@@ -11,6 +11,10 @@ app.listen(HTTP_PORT, () => {
 });
 
 app.get("/", (req, res, next) => {
+     res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    
     var sql = "select * from DS_DB WHERE col_1 IN (SELECT col_1 FROM DS_DB ORDER BY RANDOM() LIMIT 10)"
     var params = []
     db.all(sql, params, (err, rows) => {
